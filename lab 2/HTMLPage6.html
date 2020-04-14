@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <script>
+        var result = 1;
+        function power(chislo, stepen) {
+
+            for (var i = 0; i < stepen; i++) {
+                result = result * chislo;
+            }
+            return result
+        }
+
+        var x = power(2, 10);
+        document.write(x);
+    </script>
+
+</body>
+</html>

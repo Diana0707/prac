@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <script>
+            let mydate = '25-02-2012';
+        function getDate(date) {
+
+            return new Date(mydate.replace(/^([0]?[1-9]|[1|2][0-9]|[3][0|1])[-]([0]?[1-9]|[1][0-2])[-]([0-9]{4}|[0-9]{2})$/, '$3-$2-$1'));
+        }
+        document.write(getDate(mydate));// 02-25-2012
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <script>
+        //задание5(1)
+        var a = [5, 12];
+        var b = [];
+        a[99] = 7;
+
+        for (var x in a) {
+            b = Math.pow(a[x], 2);
+            document.write(b); // [ 2514449 ]
+        }
+    </script>
+
+
+    <p>задание5</p>
+    <script>
+        var a = [5, 12];
+        var b = [];
+        a[99] = 7;
+        var length = a.length;
+        var num;
+
+        for (var i = 0; i < length; i++) {
+            num = a[i];
+            if (num != null) {
+                b.push(num * num);
+            }
+        }
+        document.write(b); //[ 25, 144, 49 ]
+    </script>
+</body>
+</html>

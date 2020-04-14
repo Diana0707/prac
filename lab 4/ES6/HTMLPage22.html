@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <script type="text/javascript">
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min)) + min;
+        };
+
+        let promise = new Promise(function (resolve, reject) {
+            let waitTime = getRandomInt(1, 11);
+            setTimeout(() => {
+                if (waitTime <= 5) {
+                    resolve('result');
+                }
+                else if (waitTime > 5 && waitTime <= 10) {
+                    reject('error');
+                };
+            }, waitTime * 100);
+        });
+        promise
+            .then(
+                result => { alert('успешно'); },
+                error => { alert('ошибка') });
+    </script>
+</body>
+</html>

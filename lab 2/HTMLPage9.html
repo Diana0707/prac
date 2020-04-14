@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <script>
+        var book1 = {};
+        book1.title = 'Названиекнига';
+        book1.pubYear = '2007';
+        book1.price = '2305';
+        book1.show = function () {
+            console.log(book1.title + "-" + book1.price);
+
+        }
+
+        function showBook() {
+            console.log(this.title + "-" + this);
+        }
+        book1.show();
+        var book2 = {
+            title: 'книга2',
+            pubYear: '2000',
+            price: '2000'
+        };
+        book2.show = showBook;
+    </script>
+
+</body>
+</html>

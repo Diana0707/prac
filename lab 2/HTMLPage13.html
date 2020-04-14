@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <script>
+        function Book(title, pubYear, price) {
+            this.title = title;
+            this.pubYear = pubYear;
+            this.price = price;
+        }
+        var book1 = new Book('Книга', 1990, '3500тг');
+
+        Book.prototype.show = function () {
+            document.write(this.title);
+            document.write('<br>');
+            document.write(this.pubYear);
+            document.write('<br>');
+            document.write(this.price);
+            document.write('<br>');
+        }
+        book1.show();
+    </script>
+</body>
+</html>

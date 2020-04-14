@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <script>
+        function getRandomInt(min, max)
+        {
+            return Math.floor(Math.random() * (max - min)) + min;
+        };
+        let prom1 = new Promise(function (resolve, reject)
+        {
+            let waitTime = getRandomInt(1, 6);
+            setTimeout(() =>
+            {
+                resolve(1);
+            }, waitTime * 1000);
+        });
+
+        let prom2 = new Promise(function (resolve, reject)
+        {
+            let waitTime = getRandomInt(1, 6);
+            setTimeout(() =>
+            {
+                resolve(2);
+            }, waitTime * 1000);
+        });
+        let prom3 = new Promise(function (resolve, reject)
+        {
+            let waitTime = getRandomInt(1, 6);
+            setTimeout(() =>
+            {
+                resolve(3);
+            }, waitTime * 1000);
+        });
+        Promise.race([prom1, prom2, prom3]).then(function (val)
+        {
+            alert(val);
+        })
+    </script>
+</body>
+</html>

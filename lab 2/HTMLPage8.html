@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <script>
+        function inArray(text, array) {
+            for (var i = 0; i < array.length; i++){
+                if (array[i] === text) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        document.write("Задание №3");
+        document.write(inArray("Жаба", ["Жаба", "Змея", "Кот"]));
+    </script>
+</body>
+</html>
