@@ -1,0 +1,235 @@
+12)
+SELECT
+di_student.user_id,
+di_user.lastname AS name,
+di_gender.name AS gender,
+di_lesson_num.time_lesson AS times
+
+FROM di_student
+JOIN di_user
+ON di_student.user_id=di_user.user_id
+
+JOIN di_gender
+ON di_user.gender_id=di_gender.gender_id
+
+JOIN di_gruppa
+ON di_student.gruppa_id=di_gruppa.gruppa_id
+
+JOIN di_graduate
+ON di_gruppa.gruppa_id=di_graduate.gruppa_id
+
+JOIN di_graduate_time
+ON di_graduate.graduate_id=di_graduate_time.graduate_id
+
+JOIN di_lesson_num
+ON di_graduate_time.lesson_num_id=di_lesson_num.lesson_num_id
+
+
+WHERE di_gender.gender_id='2' AND di_lesson_num.time_lesson between '10:30:00' AND '18:30:00'
+
+13)
+SELECT
+di_course.course_id AS course ,
+di_lesson_num.time_lesson AS times 
+
+FROM di_graduate
+JOIN di_course
+ON di_graduate.course_id=di_course.course_id
+
+JOIN di_graduate_time
+ON di_graduate.graduate_id=di_graduate_time.graduate_id
+
+JOIN di_lesson_num
+ON di_graduate_time.lesson_num_id=di_lesson_num.lesson_num_id
+
+
+WHERE di_lesson_num.time_lesson between '12:30:00' AND '18:30:00'
+
+14)
+SELECT
+di_student.user_id,
+di_user.lastname AS name,
+di_day.name AS day
+
+FROM di_student
+LEFT JOIN di_user
+ON di_student.user_id=di_user.user_id
+
+JOIN di_gruppa
+ON di_student.gruppa_id=di_gruppa.gruppa_id
+
+JOIN di_graduate
+ON di_gruppa.gruppa_id=di_graduate.gruppa_id
+
+JOIN di_graduate_time
+ON di_graduate.graduate_id=di_graduate_time.graduate_id
+
+JOIN di_day
+ON di_graduate_time.day_id=di_day.day_id
+
+WHERE di_day.day_id='5'
+
+15)
+SELECT di_day.* FROM di_day
+
+LEFT JOIN di_graduate_time 
+ON di_day.day_id = di_graduate_time.day_id
+
+WHERE di_graduate_time.graduate_time_id IS NULL
+
+
+16)
+SELECT
+di_special.special_id,
+di_special.name,
+
+di_day.name AS day
+
+FROM di_special
+JOIN di_gruppa
+ON di_special.special_id=di_gruppa.special_id
+
+JOIN di_graduate
+ON di_gruppa.gruppa_id=di_graduate.gruppa_id
+
+JOIN di_graduate_time
+ON di_graduate.graduate_id=di_graduate_time.graduate_id
+
+JOIN di_day
+ON di_graduate_time.day_id=di_day.day_id
+
+WHERE di_day.day_id='2'
+
+17)
+SELECT
+di_user.lastname AS name,
+di_otdel.name AS otdel,
+di_day.name AS day
+
+FROM di_teacher
+JOIN di_user
+ON di_teacher.user_id=di_user.user_id
+
+JOIN di_otdel
+ON di_teacher.otdel_id=di_otdel.otdel_id
+
+JOIN di_graduate
+ON di_teacher.user_id=di_graduate.user_id
+
+JOIN di_graduate_time
+ON di_graduate.graduate_id=di_graduate_time.graduate_id
+
+JOIN di_day
+ON di_graduate_time.day_id=di_day.day_id
+
+WHERE di_day.day_id='6'
+
+18)
+SELECT 
+di_user.user_id, 
+di_user.lastname, 
+di_user.firstname, 
+di_gruppa.name, 
+di_special.name
+
+FROM di_user
+
+INNER JOIN di_student 
+ON di_student.user_id = di_user.user_id
+
+INNER JOIN di_gruppa 
+ON di_gruppa.gruppa_id = di_student.gruppa_id
+
+INNER JOIN di_special 
+ON di_special.special_id = di_gruppa.special_id
+
+INNER JOIN di_course 
+ON di_course.special_id = di_special.special_id AND di_course.hours > '95'
+
+19)
+SELECT 
+di_course.name, 
+di_course.hours, 
+di_special.name, 
+di_day.name
+
+FROM di_otdel
+
+INNER JOIN di_special 
+ON di_special.otdel_id = di_otdel.otdel_id
+
+INNER JOIN di_course 
+ON di_course.special_id = di_special.special_id
+
+INNER JOIN di_graduate 
+ON di_graduate.course_id = di_course.course_id
+
+INNER JOIN di_graduate_time 
+ON di_graduate_time.graduate_id = di_graduate.graduate_id
+
+INNER JOIN di_day 
+ON di_graduate_time.day_id = di_day.day_id
+
+WHERE di_otdel.otdel_id = '2' AND (di_day.day_id = '3' OR di_day.day_id = '5')
+
+20)
+SELECT di_otdel.name
+
+From di_otdel
+
+Join di_teacher 
+ON di_teacher.otdel_id = di_otdel.otdel_id
+
+Join di_graduate 
+ON di_graduate.user_id = di_teacher.user_id
+
+Join di_graduate_time 
+ON di_graduate_time.graduate_id = di_graduate.graduate_id
+
+Join di_day 
+ON di_graduate_time.day_id = di_day.day_id AND di_day.id = '2'
+
+Join di_lesson_num 
+On di_graduate_time.lesson_num_id = di_lesson_num.lesson_num_id AND di_lesson_num.time_lesson BETWEEN '09:00:00' AND '12:00:00'
+
+21)
+SELECT
+
+di_day.name, 
+COUNT(*)
+
+FROM di_course
+
+JOIN di_graduate 
+ON di_graduate.course_id = di_course.course_id
+
+JOIN di_graduate_time 
+ON di_graduate_time.graduate_id= di_graduate.graduate_id
+
+JOIN di_day 
+ON di_graduate_time.day_id=di_day.day_id
+
+GROUP BY di_day.day_id
+
+22)
+SELECT di_special.*
+
+FROM di_special
+
+JOIN di_course 
+ON di_course.special_id = di_special.special_id
+
+JOIN di_graduate
+ON di_graduate.course_id = di_course.course_id
+
+JOIN di_graduate_time 
+ON di_graduate_time.graduate_id = di_graduate.graduate_id
+
+LEFT JOIN di_day 
+ON (di_graduate_time.day_id = di_day.day_id)
+
+LEFT JOIN di_lesson_num 
+ON (di_graduate_time.lesson_num_id = di_lesson_num.lesson_num_id)
+
+WHERE di_lesson_num.time_lesson BETWEEN '14:00:00' and '18:00:00' 
+AND (di_day.name = 'Четверг' OR di_day.name = 'Суббота') AND di_day.day_id IS NULL AND di_lesson_num.lesson_num_id IS NULL
